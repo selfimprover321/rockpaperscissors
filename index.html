@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <script>
+        function getComputerChoice(){
+            let x = Math.floor(Math.random()*3);
+            let options = ["rock", "paper", "scissors"];
+            return options[x];
+        }
+        let getHumanChoice = () => prompt("Choose one of these: rock, paper, or scissors");
+        let humanScore = 0;
+        let computerScore = 0;
+        let playRound = function(humanChoice, computerChoice){
+            for (let i = 0; i < 5; i++){   
+                const computerChoice = getComputerChoice();
+                let humanChoice = getHumanChoice();
+                humanChoice = humanChoice.toLowerCase();
+                if (humanChoice === computerChoice){
+                    alert(`You both chose ${computerChoice}. This is a draw. The score is Computer: ${computerScore}, You: ${humanScore}`);
+                }
+                else if ((computerChoice === "rock" && humanChoice === "scissors") || (computerChoice === "paper" && humanChoice === "rock") || (computerChoice == "scissors" && humanChoice == "paper")){
+                    computerScore = computerScore + 1;
+                    alert(`You chose ${humanChoice}, but the computer chose ${computerChoice}. This means that you lost this round. You won ${humanScore} rounds so far, compared to the ${computerScore} rounds of the computer.`)
+                }
+                else{
+                    humanScore = humanScore + 1;
+                    alert(`You win this round! You chose ${humanChoice} and the computer chose ${computerChoice}. You won ${humanScore} rounds so far, compared to the ${computerScore} rounds of the computer.`)
+                }
+            }
+            if (humanScore > computerScore){
+                alert(`You win! You won ${humanScore} rounds, compared to the ${computerScore} rounds of the computer.`)
+            }
+            else if (humanScore < computerScore){
+                alert(`You lose! You won ${humanScore} rounds, compared to the ${computerScore} rounds of the computer.`)
+            }
+            else{
+                alert(`Tie! You both won ${humanScore} rounds.`)
+            }
+        }
+        playRound();
+    </script>
+</body>
+</html>
